@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const SocietyForm = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const SocietyForm = () => {
   e.preventDefault();
   try {
     // ✅ send the entire formData object
-    const res = await axios.post("http://localhost:5000/api/societies", formData);
+    const res = await axios.post(`${BASE_URL}/societies`, formData);
 
     alert("✅ Society submitted successfully!");
     console.log(res.data);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./BusOnboardingForm.css";
+import { BASE_URL } from "../config";
 
 export default function BusOnboardingForm() {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ export default function BusOnboardingForm() {
       console.log("Submitting bus:", formData);
 
       // ✅ API should return bus object + qrCode (base64 or URL)
-      const res = await axios.post("http://localhost:5000/api/buses", formData);
+      const res = await axios.post(`${BASE_URL}/buses`, formData);
 
       alert("✅ Bus onboarded successfully!");
       if (res.data.bus?.qrCode) {

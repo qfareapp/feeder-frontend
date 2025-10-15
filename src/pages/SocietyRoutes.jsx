@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const SocietyRoutes = () => {
   const { id } = useParams(); // society ID
@@ -10,10 +11,10 @@ const SocietyRoutes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const societyRes = await axios.get(`http://localhost:5000/api/societies/${id}`);
+        const societyRes = await axios.get(`${BASE_URL}/societies/${id}`);
         setSociety(societyRes.data);
 
-        const routeRes = await axios.get(`http://localhost:5000/api/routes?societyId=${id}`);
+        const routeRes = await axios.get(`${BASE_URL}/routes?societyId=${id}`);
         setRoutes(routeRes.data || []);
       } catch (err) {
         console.error("❌ Error fetching society routes:", err.message);

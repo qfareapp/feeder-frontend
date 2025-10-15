@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const SocietyDetail = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const SocietyDetail = () => {
   useEffect(() => {
     const fetchSociety = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/societies/${id}`);
+        const res = await axios.get(`${BASE_URL}/societies/${id}`);
         setFormData(res.data);
       } catch (err) {
         console.error("❌ Error fetching society:", err.message);
@@ -29,7 +30,7 @@ const SocietyDetail = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/societies/${id}`, formData);
+      await axios.put(`${BASE_URL}/societies/${id}`, formData);
       alert("✅ Society updated successfully!");
       navigate("/admin/societies");
     } catch (err) {

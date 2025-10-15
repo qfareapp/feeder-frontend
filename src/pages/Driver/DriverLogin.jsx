@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export default function DriverLogin({ onLogin }) {
   const [regNumber, setRegNumber] = useState("");
@@ -8,7 +9,7 @@ export default function DriverLogin({ onLogin }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/driver/login", {
+      const res = await axios.post(`${BASE_URL}/driver/login`, {
         regNumber,
         password,
       });

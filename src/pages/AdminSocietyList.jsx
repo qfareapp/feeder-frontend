@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const AdminSocietyList = () => {
   const [societies, setSocieties] = useState([]);
@@ -9,7 +10,7 @@ const AdminSocietyList = () => {
   useEffect(() => {
     const fetchSocieties = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/societies");
+        const res = await axios.get(`${BASE_URL}/societies`);
         setSocieties(res.data || []);
       } catch (err) {
         console.error("❌ Error fetching societies:", err.message);

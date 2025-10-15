@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export default function DriverDashboard({ busId, token, onLogout }) {
   const [schedules, setSchedules] = useState([]);
@@ -7,7 +8,7 @@ export default function DriverDashboard({ busId, token, onLogout }) {
   const fetchSchedules = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/schedules?busId=${busId}`,
+        `${BASE_URL}/schedules?busId=${busId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setSchedules(res.data || []);
@@ -24,8 +25,8 @@ export default function DriverDashboard({ busId, token, onLogout }) {
     try {
       const url =
         type === "start"
-          ? `http://localhost:5000/api/schedules/${id}/start`
-          : `http://localhost:5000/api/schedules/${id}/end`;
+          ? `${BASE_URL}/schedules/${id}/start`
+          : `${BASE_URL}/schedules/${id}/end`;
 
       await axios.put(url, {}, { headers: { Authorization: `Bearer ${token}` } });
       fetchSchedules();

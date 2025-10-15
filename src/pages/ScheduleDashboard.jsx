@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export default function ScheduleDashboard() {
   const [schedules, setSchedules] = useState([]);
@@ -15,7 +16,7 @@ export default function ScheduleDashboard() {
 
   const fetchSchedules = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/schedules");
+      const res = await axios.get(`${BASE_URL}/schedules`);
       setSchedules(
         Array.isArray(res.data)
           ? res.data

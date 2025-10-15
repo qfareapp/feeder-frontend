@@ -1,0 +1,1 @@
+export const BASE_URL = "https://feeder-backend-y3cz.onrender.com/api";

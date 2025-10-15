@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const RouteListPage = () => {
   const [routes, setRoutes] = useState([]);
@@ -12,7 +13,7 @@ const RouteListPage = () => {
 
   const fetchRoutes = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/routes");
+      const res = await axios.get(`${BASE_URL}/routes`);
       setRoutes(res.data || []);
     } catch (err) {
       console.error("Error fetching routes:", err);
@@ -23,7 +24,7 @@ const RouteListPage = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this route?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/routes/${id}`);
+      await axios.delete(`${BASE_URL}/routes/${id}`);
       alert("✅ Route deleted!");
       fetchRoutes();
     } catch (err) {
@@ -36,7 +37,7 @@ const RouteListPage = () => {
   const handleSaveEdit = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/routes/${editingRoute._id}`,
+        `${BASE_URL}/routes/${editingRoute._id}`,
         editingRoute
       );
       alert("✅ Route updated!");

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const RouteForm = () => {
   const [societies, setSocieties] = useState([]); // ✅ store societies
@@ -17,7 +18,7 @@ const RouteForm = () => {
 
   // fetch societies on mount
   useEffect(() => {
-    axios.get("http://localhost:5000/api/societies")
+    axios.get(`${BASE_URL}/societies`)
       .then(res => setSocieties(res.data))
       .catch(err => console.error("Error fetching societies:", err));
   }, []);
@@ -57,7 +58,7 @@ const addSchedule = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    await axios.post("http://localhost:5000/api/routes", formData);
+    await axios.post(`/routes`, formData);
     alert("✅ Route added successfully!");
     setFormData({
       routeNo: "",
