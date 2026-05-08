@@ -1,10 +1,7 @@
 import axios from "axios";
 
-// ✅ Auto-detect environment (development vs production)
 const BASE_URL =
-  import.meta.env.MODE === "production"
-    ? import.meta.env.VITE_API_URL // Live backend on Render
-    : import.meta.env.VITE_DEV_API; // Local backend during development
+  import.meta.env.VITE_API_URL || import.meta.env.VITE_DEV_API || "http://localhost:5000/api";
 
 console.log("🔍 Using API Base URL:", BASE_URL);
 

@@ -6,6 +6,11 @@ import connectDB from "./config/db.js";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
+const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 // ✅ LOGGING: Now NODE_ENV will never be undefined
 console.log(`🌍 Environment mode: ${process.env.NODE_ENV}`);
 console.log(
@@ -28,13 +33,6 @@ app.use(
     origin: function (origin, callback) {
       // Allow requests with no origin (mobile apps, APK, Postman)
       if (!origin) return callback(null, true);
-
-      // Allowed origins
-      const allowedOrigins = [
-        "https://feeder-frontend-flame.vercel.app", // production frontend
-        "http://localhost:5173",                    // local dev web
-        "exp://localhost:19000",                    // Expo Go
-      ];
 
       // Allow any *.expo.dev subdomain
       if (/\.expo\.dev$/.test(origin)) {

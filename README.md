@@ -13,3 +13,4 @@ Single Git repository for the feeder bus system.
 - Each app keeps its own `package.json`.
 - App-specific `.gitignore` files remain in place for framework-specific outputs.
 - The root `.gitignore` covers shared OS, editor, log, dependency, and secret-file noise.
+- Each app includes an `.env.example` showing the deployment variables it expects.

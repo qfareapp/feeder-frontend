@@ -2,8 +2,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
+const baseURL =
+  process.env.EXPO_PUBLIC_API_URL || "http://localhost:5000/api";
+
 const api = axios.create({
-  baseURL: "http:///10.10.10.6:5000/api", // 👈 root of your backend
+  baseURL,
 });
 
 // Attach token automatically
